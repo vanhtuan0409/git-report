@@ -21,12 +21,12 @@ func main() {
 				cli.StringFlag{
 					Name:  "from, f",
 					Value: "",
-					Usage: "Get commits starting from date",
+					Usage: "Get commits starting from date. Date format: YYYY-MM-DD",
 				},
 				cli.StringFlag{
 					Name:  "to, t",
 					Value: "",
-					Usage: "Get commits ending to date",
+					Usage: "Get commits ending to date. Date format: YYYY-MM-DD",
 				},
 			},
 		},
