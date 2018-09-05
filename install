@@ -1,1 +1,7 @@
-echo "Hello world!!!"
+echo "Download binary zip"
+curl https://github.com/vanhtuan0409/git-report/releases/download/v0.1.0/greport-macos.tar.gz --output greport-macos.tar.gz
+echo "Unzip binary file"
+tar -zxvf greport-macos.tar.gz
+rm greport-macos.tar.gz
+echo "Moving file to /usr/local/bin"
+mv greport /usr/local/bin
