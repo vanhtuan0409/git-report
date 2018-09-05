@@ -1,9 +1,11 @@
 package gitreport
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 
 	yaml "gopkg.in/yaml.v2"
 )
@@ -12,6 +14,22 @@ type Config struct {
 	FilterEmail      []string `yaml:"emails"`
 	Repos            []string `yaml:"repositories"`
 	DefaultTimeRange int      `yaml:"default_time_range"`
+}
+
+func (c *Config) ToString() string {
+	sb := new(strings.Builder)
+	fmt.Fprintf(sb, "Emails:\n")
+	for _, email := range c.FilterEmail {
+		fmt.Fprintf(sb, "  - %s\n", email)
+	}
+
+	fmt.Fprintf(sb, "Repositories:\n")
+	for _, repo := range c.Repos {
+		fmt.Fprintf(sb, "  - %s\n", repo)
+	}
+
+	fmt.Fprintf(sb, "Default time range: %d\n", c.DefaultTimeRange)
+	return sb.String()
 }
 
 func GetDefaultConfigPath() string {
