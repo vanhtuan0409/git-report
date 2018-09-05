@@ -12,8 +12,24 @@ func main() {
 	app.Name = "Git Report"
 	app.Usage = "Collect git commit messages and organize by days to create a daily report"
 	app.Version = "v0.1.0"
-	app.Action = generateReport
 	app.Commands = []cli.Command{
+		{
+			Name:   "generate",
+			Usage:  "Generate daily report from commit messages",
+			Action: generateReport,
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  "from, f",
+					Value: "",
+					Usage: "Get commits starting from date",
+				},
+				cli.StringFlag{
+					Name:  "to, t",
+					Value: "",
+					Usage: "Get commits ending to date",
+				},
+			},
+		},
 		{
 			Name:   "init",
 			Usage:  "Initialize config file",

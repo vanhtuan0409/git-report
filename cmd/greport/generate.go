@@ -11,7 +11,7 @@ func generateReport(c *cli.Context) error {
 	configPath := gitreport.GetDefaultConfigPath()
 	config, err := gitreport.ReadConfigFromFile(configPath)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	resultChan := make(chan string)
