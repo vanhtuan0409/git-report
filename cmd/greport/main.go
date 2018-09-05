@@ -9,19 +9,8 @@ import (
 func main() {
 	configPath := gitreport.GetDefaultConfigPath()
 	config, err := gitreport.ReadConfigFromFile(configPath)
-	// Handle read config file
 	if err != nil {
-		if err == gitreport.ErrNoFileConfig {
-			err = gitreport.CreateDefaultConfig(configPath)
-			if err != nil {
-				panic(err)
-			}
-			msg := fmt.Sprintf("Please edit config file at: %s", configPath)
-			fmt.Println(msg)
-			return
-		} else {
-			panic(err)
-		}
+		panic(err)
 	}
 
 	resultChan := make(chan string)
