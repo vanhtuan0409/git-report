@@ -3,4 +3,4 @@ build:
 
 release:
 	make build
-	tar -zcvf bin/greport-macos.tar.gz bin/greport
+	tar -C bin -zcvf dist/greport-macos.tar.gz greport
