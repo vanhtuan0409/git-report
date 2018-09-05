@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os/exec"
 	"path/filepath"
+	"strings"
 	"time"
 )
 
@@ -84,6 +85,13 @@ func (c *nativeGitWrapper) Log(options *LogOption) (*Result, error) {
 	}
 
 	jsonStr := string(out)
+	jsonStr = strings.TrimSpace(jsonStr)
+	if jsonStr == "" {
+		return &Result{
+			Repo:    filepath.Base(c.repo),
+			Commits: []*GitCommit{},
+		}, nil
+	}
 	if jsonStr[len(jsonStr)-1] != ',' {
 		return nil, errors.New("Invalid return from git log")
 	}
