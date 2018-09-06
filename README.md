@@ -4,6 +4,11 @@ Simple tools to generate daily report from multiple commits and repositories
 
 ### Installation
 
+Prerequisite
+
+- [Git](https://git-scm.com/) installed
+- `greport` have only been tested on MacOS
+
 Run the following script in your terminal
 
 ```sh
