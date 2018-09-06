@@ -31,7 +31,7 @@ func (r *reportGenerator) GenerateFromCommits(result *Result) string {
 	for _, g := range groups {
 		fmt.Fprintf(sb, "  + %s\n", g.name)
 		for _, commit := range g.commits {
-			fmt.Fprintf(sb, "    - %s\n", commit.Message())
+			fmt.Fprintf(sb, "    - %s: %s\n", commit.Author.Date.Format("15:04"), commit.Message())
 		}
 	}
 
