@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 
@@ -78,6 +79,11 @@ func CreateDefaultConfig(filePath string) (*Config, error) {
 		Repos:            []string{},
 		DefaultTimeRange: 7,
 	}
+	defaultEmail := getDefaultGitEmail()
+	if defaultEmail != "" {
+		defaultConfig.FilterEmail = []string{defaultEmail}
+	}
+
 	out, err := yaml.Marshal(defaultConfig)
 	if err != nil {
 		return nil, err
@@ -97,4 +103,18 @@ func setDefaultConfig(config *Config) {
 			config.Repos = []string{pwd}
 		}
 	}
+	if len(config.FilterEmail) == 0 {
+		defaultEmail := getDefaultGitEmail()
+		if defaultEmail != "" {
+			config.FilterEmail = []string{defaultEmail}
+		}
+	}
+}
+
+func getDefaultGitEmail() string {
+	out, err := exec.Command("git", "config", "--global", "user.email").Output()
+	if err != nil {
+		return ""
+	}
+	return string(out)
 }
