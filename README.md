@@ -84,3 +84,7 @@ GLOBAL OPTIONS:
    --help, -h     show help
    --version, -v  print the version
 ```
+
+### Screenshot
+
+![screenshot](Screenshot.png)
