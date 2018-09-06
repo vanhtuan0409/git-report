@@ -11,7 +11,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "Git Report"
 	app.Usage = "Collect git commit messages and organize by days to create a daily report"
-	app.Version = "v0.1.0"
+	app.Version = "v0.1.1"
 	app.Commands = []cli.Command{
 		{
 			Name:   "generate",

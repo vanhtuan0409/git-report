@@ -1,5 +1,5 @@
 echo "Download binary zip"
-curl -L https://github.com/vanhtuan0409/git-report/releases/download/v0.1.0/greport-macos.tar.gz > greport-macos.tar.gz
+curl -L https://github.com/vanhtuan0409/git-report/releases/download/v0.1.1/greport-macos.tar.gz > greport-macos.tar.gz
 echo "Unzip binary file"
 tar -zxvf greport-macos.tar.gz
 rm greport-macos.tar.gz

@@ -20,14 +20,21 @@ Or manually [download binary file](https://github.com/vanhtuan0409/git-report/re
 ### Basic usage
 
 ```sh
+# create default config
+greport init
+
 # generate report for last 7 days of current directory
 greport generate
+
 # generate report from a specific date
 greport generate -f 2018-08-01
+
 # generate report from a specific date to a specific date
 greport generate -f 2018-08-01 -t 2018-08-10
+
 # view current config
 greport config
+
 # view manual
 greport help
 greport help generate
@@ -39,7 +46,7 @@ By default `greport` will generate report within 7 days for all member in curren
 
 Config variable:
 
-- emails (list): list of emails. When specified `greport` will only collect commits from author with these email
+- emails (list): list of emails. When specified `greport` will only collect commits from author with these email.
 - repositories (list): list of repository paths on your machine.
 - default_time_range (number of days): when there is no `from` option specified, `greport` will collect all commits within default_time_range to now
 
