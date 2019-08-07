@@ -1,7 +1,6 @@
 package gitreport
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"os/exec"
@@ -27,9 +26,9 @@ type LogOption struct {
 }
 
 type User struct {
-	Name  string    `json:"name"`
-	Email string    `json:"email"`
-	Date  time.Time `json:"date"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
+	Date  string `json:"date"`
 }
 
 type GitCommit struct {
@@ -42,7 +41,7 @@ type GitCommit struct {
 }
 
 func (c *GitCommit) Message() string {
-	return fmt.Sprintf("%s %s", c.Subject, c.Body)
+	return fmt.Sprintf("%s: %s %s", c.Author.Name, c.Subject, c.Body)
 }
 
 type Result struct {
@@ -98,9 +97,14 @@ func (c *nativeGitWrapper) Log(options *LogOption) (*Result, error) {
 	jsonStr = jsonStr[:len(jsonStr)-1]
 	jsonStr = fmt.Sprintf(`[%s]`, jsonStr)
 
-	var commits []*GitCommit
-	err = json.Unmarshal([]byte(jsonStr), &commits)
-	if err != nil {
+	var p = &Parser{
+		JsonStr: "",
+		Head:    0,
+		Len:     0,
+	}
+	commits, err := p.Unmarshal([]byte(jsonStr))
+	if nil != err {
+		fmt.Println(err)
 		return nil, err
 	}
 

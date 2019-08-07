@@ -31,7 +31,7 @@ func (r *reportGenerator) GenerateFromCommits(result *Result) string {
 	for _, g := range groups {
 		fmt.Fprintf(sb, "  + %s\n", g.name)
 		for _, commit := range g.commits {
-			fmt.Fprintf(sb, "    - %s: %s\n", commit.Author.Date.Format("15:04"), commit.Message())
+			fmt.Fprintf(sb, "    - %s: %s\n", commit.Author.Date, commit.Message())
 		}
 	}
 
@@ -46,7 +46,7 @@ type group struct {
 func groupByDay(commits []*GitCommit) []*group {
 	groups := []*group{}
 	for _, commit := range commits {
-		dayStr := commit.Author.Date.Format("2006-01-02")
+		dayStr := commit.Author.Date[0:10]
 		if len(groups) == 0 || groups[len(groups)-1].name != dayStr {
 			groups = append(groups, &group{
 				name:    dayStr,
